@@ -1,30 +1,83 @@
 class Sorter {
   constructor() {
-    // your implementation
+    this.array = [];
   }
 
   add(element) {
-    // your implementation
+    this.array.push(element);
+    console.log(this.array);
   }
 
   at(index) {
-    // your implementation
+    return this.array[index];
   }
 
   get length() {
-    // your implementation
+    return this.array.length;
   }
 
   toArray() {
-    // your implementation
+    return this.array;
   }
 
   sort(indices) {
-    // your implementation
+    
+    if(indices.length == 1) return this.array;
+    
+    let sortArray = [];
+    let min = 0;
+    let a = 0;
+    let sortIndices = [];
+
+    //сортируем массив индексов
+    for (let k = 0; k < indices.length; k++) {
+      for (let i = k; i < indices.length; i++) {
+        min = indices[i];
+        for (let j = k+1; j < indices.length; j++) {
+          if (min > indices[j]){
+            a = indices[i];
+            min = indices[j];
+            indices[i]=min;
+            indices[j]=a;
+          }
+        }
+      }
+    }
+
+
+    //Делаем массив из чисел по выбранным индексам
+   for (let i = 0; i < indices.length; i++) {
+        sortArray.push(this.array[indices[i]]);
+    } 
+    
+    //сортируем наш массив
+    for (let k = 0; k < sortArray.length; k++) {
+    for (let i = k; i < sortArray.length; i++) {
+      min = sortArray[i];
+      for (let j = k+1; j < sortArray.length; j++) {
+        if (indices[i]<indices[j] && min > sortArray[j]){
+          a = sortArray[i];
+          min = sortArray[j];
+          sortArray[i]=min;
+          sortArray[j]=a;
+        }
+      }
+    }
+    }
+
+    //записываем полученный отсортированный массив в данный
+    for (let i = 0; i < indices.length; i++) {
+        this.array[indices[i]] = sortArray[i];
+    } 
+    
+    return this.array;
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    function AGE_COMPARATOR (){
+
+      return;
+    }
   }
 }
 
